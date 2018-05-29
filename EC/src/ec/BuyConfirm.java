@@ -36,12 +36,27 @@ public class BuyConfirm extends HttpServlet {
 			//合計金額
 			int totalPrice = EcHelper.getTotalItemPrice(cartIDBList);
 
+			//配送料を追加
+			boolean H = false;
+
+			for(ItemDataBeans ibd : cartIDBList) {
+				if(ibd.getName().indexOf("送料無料") == -1) {
+				 H = true;
+				}
+			}
+			if(H) {
+				totalPrice += userSelectDMB.getPrice();
+			}
+			else {
+				userSelectDMB.setPrice(0);
+			}
+
 			BuyDataBeans bdb = new BuyDataBeans();
 			bdb.setUserId((int) session.getAttribute("userId"));
 			bdb.setTotalPrice(totalPrice);
 			bdb.setDelivertMethodId(userSelectDMB.getId());
-
-
+			bdb.setDeliveryMethodPrice(userSelectDMB.getPrice());
+			bdb.setDeliveryMethodName(userSelectDMB.getName());
 
 			//購入確定で利用
 			session.setAttribute("bdb", bdb);
