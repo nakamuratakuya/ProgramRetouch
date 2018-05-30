@@ -41,8 +41,9 @@ public class ItemSearchResult extends HttpServlet {
 			// 検索ワードに対しての総ページ数を取得
 			double itemCount = ItemDAO.getItemCount(searchWord);
 			int pageMax = (int) Math.ceil(itemCount / PAGE_MAX_ITEM_COUNT);
-
 			
+			System.out.println(itemCount);
+
 			//総アイテム数
 			request.setAttribute("itemCount", (int) itemCount);
 			// 総ページ数

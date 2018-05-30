@@ -37,19 +37,20 @@ public class BuyConfirm extends HttpServlet {
 			int totalPrice = EcHelper.getTotalItemPrice(cartIDBList);
 
 			//配送料を追加
-			boolean H = false;
+			//boolean H = false;
 
-			for(ItemDataBeans ibd : cartIDBList) {
-				if(ibd.getName().indexOf("送料無料") == -1) {
-				 H = true;
-				}
-			}
-			if(H) {
+			//for(ItemDataBeans ibd : cartIDBList) {
+			//	if(ibd.getName().indexOf("送料無料") == -1) {
+			//	 H = true;
+			//	}
+			//}
+			//if(H) {
 				totalPrice += userSelectDMB.getPrice();
-			}
-			else {
-				userSelectDMB.setPrice(0);
-			}
+			//}
+
+			//else {
+			//	userSelectDMB.setPrice(0);
+			//}
 
 			BuyDataBeans bdb = new BuyDataBeans();
 			bdb.setUserId((int) session.getAttribute("userId"));

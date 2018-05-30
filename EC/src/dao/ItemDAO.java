@@ -115,19 +115,19 @@ public class ItemDAO {
 				st = con.prepareStatement("SELECT * FROM m_item ORDER BY id ASC LIMIT ?,? ");
 				st.setInt(1, startiItemNum);
 				st.setInt(2, pageMaxItemCount);
-				System.out.println(searchWord+"1");
-				System.out.println(startiItemNum+"2");
-				System.out.println(pageMaxItemCount+"3");
-				System.out.println(pageNum+"4");
+				System.out.println(searchWord+"??????");
+				System.out.println(startiItemNum+"??????");
+				System.out.println(pageMaxItemCount);
+				System.out.println(pageNum);
 			} else {
 				// 商品名検索
-				st = con.prepareStatement("SELECT * FROM m_item WHERE name LIKE '%' || ? || '%' ORDER BY id ASC LIMIT ?,? ");
-				st.setString(1,searchWord);
+				st = con.prepareStatement("SELECT * FROM m_item WHERE name LIKE  ?  ORDER BY id ASC LIMIT ?,? ");
+				st.setString(1,"%"+searchWord+"%");
 				st.setInt(2, startiItemNum);
 				st.setInt(3, pageMaxItemCount);
-				System.out.println(searchWord+"5");
-				System.out.println(startiItemNum+"6");
-				System.out.println(pageMaxItemCount+"7");
+				System.out.println(searchWord+"さーちわーど");
+				System.out.println(startiItemNum+"２");
+				System.out.println(pageMaxItemCount+"3");
 				System.out.println(pageNum);
 			}
 
@@ -143,6 +143,8 @@ public class ItemDAO {
 				item.setFileName(rs.getString("file_name"));
 				itemList.add(item);
 			}
+			
+			System.out.println("要素数"+itemList.size());
 			System.out.println("get Items by itemName has been completed");
 			return itemList;
 		} catch (SQLException e) {

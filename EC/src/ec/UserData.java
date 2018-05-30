@@ -21,23 +21,24 @@ import dao.UserDAO;
 @WebServlet("/UserData")
 public class UserData extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+			
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+			
 		// セッション開始
 		HttpSession session = request.getSession();
 		try {
 			// ログイン時に取得したユーザーIDをセッションから取得
 			int userId = (int) session.getAttribute("userId");
+			System.out.println(userId);
 			// 更新確認画面から戻ってきた場合Sessionから取得。それ以外はuserIdでユーザーを取得
 			UserDataBeans udb = session.getAttribute("returnUDB") == null ? UserDAO.getUserDataBeansByUserId(userId) : (UserDataBeans) EcHelper.cutSessionAttribute(session, "returnUDB");
-
-
-
+			
+			
+			
 			// 入力された内容に誤りがあったとき等に表示するエラーメッセージを格納する
 			String validationMessage = (String) EcHelper.cutSessionAttribute(session, "validationMessage");
-
-
+			
+			
 			request.setAttribute("validationMessage", validationMessage);
 			request.setAttribute("udb", udb);
 
