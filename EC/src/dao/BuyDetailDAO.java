@@ -43,14 +43,13 @@ public class BuyDetailDAO {
 			}
 		}
 	}
-
 	/**
 	 * 購入IDによる購入情報検索
 	 * @param buyId
 	 * @return {BuyDataDetailBeans}
 	 * @throws SQLException
 	 */
-	public ArrayList<BuyDetailDataBeans> getBuyDataBeansListByBuyId(int buyId) throws SQLException {
+	public static ArrayList<BuyDetailDataBeans> getBuyDataBeansListByBuyId(int buyId) throws SQLException {
 		Connection con = null;
 		PreparedStatement st = null;
 		try {
