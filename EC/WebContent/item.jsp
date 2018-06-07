@@ -10,6 +10,7 @@
 	ItemDataBeans item = (ItemDataBeans) request.getAttribute("item");
 	String searchWord = (String) session.getAttribute("searchWord");
 	int pageNum = (int) request.getAttribute("pageNum");
+	
 %>
 </head>
 <body>

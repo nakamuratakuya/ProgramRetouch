@@ -29,16 +29,28 @@ public class UserData extends HttpServlet {
 
 		// セッション開始
 		HttpSession session = request.getSession();
+
 		try {
+			 Object status = session.getAttribute("userId");
+
+			    if (status == null){
+			    	response.sendRedirect("Login");
+			    	return;
+			    }
+
 			// ログイン時に取得したユーザーIDをセッションから取得
 			int userId = (int) session.getAttribute("userId");
 			System.out.println(userId);
+
+
+
 			// 更新確認画面から戻ってきた場合Sessionから取得。それ以外はuserIdでユーザーを取得
 			UserDataBeans udb = session.getAttribute("returnUDB") == null ? UserDAO.getUserDataBeansByUserId(userId) : (UserDataBeans) EcHelper.cutSessionAttribute(session, "returnUDB");
 
-			System.out.println(udb.getId());
+		//	System.out.println(udb.getId());
 			ArrayList<BuyDataBeans> bdbList = BuyDAO.getBuyDataBeansByUserId(udb.getId());
-			System.out.println("要素数"+bdbList.size());
+			//System.out.println("要素数"+bdbList.size());
+
 			//for(BuyDataBeans bdb : bdbList) {
 				//System.out.println(bdb.getId());
 				//System.out.println(bdb.getTotalPrice());
